@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Меню Категориялары{% endblock %}
+
+{% block content %}
+<div class="container"> 
+    <h1 class="category-title">Меню Категориялары</h1> 
+    
+    {# Категория шилтемелери үчүн ЖӨНӨКӨЙ тизме #}
+    <ul class="simple-category-list"> 
+        <li><a href="{% url 'cake_list' %}">Торттор</a></li> 
+        <li><a href="{% url 'coffee_list' %}">Кофелер</a></li>
+        <li><a href="{% url 'drink_list' %}">Суусундуктар</a></li>
+    </ul>
+
+    
+</div>
+
+{# Бул баракка гана тиешелүү кошумча CSS (жөнөкөй стиль үчүн) #}
+<style>
+    .simple-category-list {
+        list-style: none; /* Маркерлерди алуу */
+        padding: 0;
+        text-align: center; /* Ортого жылдыруу */
+        margin: 40px 0; /* Үстүнөн/астынан боштук */
+    }
+    .simple-category-list li {
+        margin-bottom: 15px; /* Тизме элементтеринин арасы */
+    }
+    .simple-category-list li a {
+        font-size: 1.2em; /* Шрифт өлчөмү */
+        font-weight: bold; /* Калың */
+        color: var(--dark-text); /* Текст түсү (CSS'тен) */
+        text-decoration: none;
+        padding: 5px 10px;
+        border-bottom: 2px solid transparent; /* Астындагы сызык (азырынча тунук) */
+        transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .simple-category-list li a:hover {
+        color: var(--primary-color); /* Үстүнө келгенде түс өзгөрөт (CSS'тен) */
+        border-bottom-color: var(--primary-color); /* Астына сызык пайда болот */
+    }
+</style>
+
+{% endblock content %}

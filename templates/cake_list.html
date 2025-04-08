@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Торттор{% endblock %} {# Бул блок туура жабылган #}
+
+{# ----- БУЛ БЛОК 6-САПТА БАШТАЛАТ: ----- #}
+{% block content %} 
+<div class="container"> 
+    <h1 class="category-title">Биздин Торттор</h1> 
+
+    {% if cakes %}
+        <ul class="item-list"> 
+            {% for cake in cakes %}
+                <li class="item-card"> 
+                    
+                    {% if cake.image %}
+                        <img src="{{ cake.image.url }}" alt="{{ cake.name }}">
+                    {% else %}
+                         <div style="height: 240px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #ccc;">Сүрөт жок</div>
+                    {% endif %}
+                    
+                    <div class="item-card-content"> 
+                        <h2>{{ cake.name }}</h2>
+                        <p class="description">{{ cake.description }}</p> 
+
+                        <div class="item-card-footer"> 
+                            <span class="price">{{ cake.price }} сом</span> 
+                            <a href="#" class="order-button">Заказ Берүү</a> 
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="text-align: center; margin-top: 40px; color: #888;">Азырынча бул категорияда товар жок.</p> 
+    {% endif %}
+</div> 
+{# ----- БУЛ БЛОК УШУЛ ЖЕРДЕ ТУУРА ЖАБЫЛЫШЫ КЕРЕК: ----- #}
+{% endblock content %} 
+{# --------------------------------------------------- #}

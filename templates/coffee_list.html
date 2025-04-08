@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Кофелер{% endblock %}
+
+{% block content %}
+<h1>Биздин Кофелер</h1>
+
+{% if coffees %}
+    <ul>
+        {% for coffee in coffees %}
+            <li>
+                <h2>{{ coffee.name }}</h2>
+                <p>{{ coffee.description }}</p> {# Эгер description талаасы бар болсо #}
+                <p><strong>Баасы:</strong> {{ coffee.price }} сом</p>
+                {% if coffee.image %}
+                    <img src="{{ coffee.image.url }}" alt="{{ coffee.name }}" width="200"> 
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Азырынча кофелер жок.</p>
+{% endif %}
+
+<p><a href="{% url 'menu' %}">Негизги менюга кайтуу</a></p> 
+{% endblock content %}

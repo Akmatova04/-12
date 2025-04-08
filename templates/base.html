@@ -1,0 +1,34 @@
+{% load static %} {# Бул сап эң башында турганы жакшы #}
+<!DOCTYPE html>
+<html lang="ky">
+<head> {# HEAD БӨЛҮГҮ УШУЛ ЖЕРДЕН БАШТАЛАТ #}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Биздин Меню{% endblock %}</title> 
+    
+    {# ----- СТИЛЬ ФАЙЛЫНА ШИЛТЕМЕ УШУЛ ЖЕРГЕ КОЮЛАТ: ----- #}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    {# ------------------------------------------------------- #}
+
+    {# Бул жерге башка <meta> же <link> тегдерди кошсоңуз болот #}
+
+</head> {# HEAD БӨЛҮГҮ УШУЛ ЖЕРДЕ АЯКТАЙТ #}
+<body>
+    <header class="main-header">
+        <div class="container">
+            <h1><a href="{% url 'menu' %}">Биздин Меню</a></h1> 
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© {% now "Y" %} Сиздин Кафе. Бардык укуктар корголгон.</p>
+        </div>
+    </footer>
+</body>
+</html>
