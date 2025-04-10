@@ -1,27 +1,70 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Кофелер{% endblock %}
+{% block title %}Биздин Кофелер{% endblock title %}
 
 {% block content %}
-<h1>Биздин Кофелер</h1>
+<div class="container mt-4"> {# Контейнер #}
 
-{% if coffees %}
-    <ul>
-        {% for coffee in coffees %}
-            <li>
-                <h2>{{ coffee.name }}</h2>
-                <p>{{ coffee.description }}</p> {# Эгер description талаасы бар болсо #}
-                <p><strong>Баасы:</strong> {{ coffee.price }} сом</p>
-                {% if coffee.image %}
-                    <img src="{{ coffee.image.url }}" alt="{{ coffee.name }}" width="200"> 
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Азырынча кофелер жок.</p>
-{% endif %}
+    {# Баракчанын негизги аталышы #}
+    <h1 class="category-title text-center mb-5">Биздин Кофелер</h1>
 
-<p><a href="{% url 'menu' %}">Негизги менюга кайтуу</a></p> 
+    {% if coffees %}
+        <div class="row">
+            {% for coffee in coffees %}  {# Цикл өзгөрмөсү 'coffee' #}
+                {# Ар бир кофе үчүн колонка #}
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+
+                    {# Карта структурасы #}
+                    <div class="card menu-item-card h-100">
+
+                        {% if coffee.image %}
+                            <img src="{{ coffee.image.url }}" class="card-img-top" alt="{{ coffee.name }}">
+                        {% else %}
+                            {# Сүрөт жок болсо, placeholder #}
+                            <img src="{% static 'images/placeholder.png' %}" class="card-img-top" alt="Сүрөт жок">
+                        {% endif %}
+
+                        {# Картанын негизги бөлүгү #}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ coffee.name }}</h5> {# coffee.name колдонулду #}
+
+                            {% if coffee.description %}
+                                <p class="card-text mb-auto">
+                                    {{ coffee.description }} {# coffee.description колдонулду #}
+                                </p>
+                            {% else %}
+                                <p class="card-text mb-auto"> </p>
+                            {% endif %}
+
+                            <p class="price mt-3">
+                                Баасы: {{ coffee.price|floatformat:2 }} сом {# coffee.price колдонулду #}
+                            </p>
+
+                            {# Буйрутма баскычы (WhatsApp шилтемеси менен) #}
+                            {% with whatsapp_number="996990686854" %}
+                            {# Бул жерде coffee.name колдонулду! #}
+                            {% with message="Саламатсызбы! Мен '"|add:coffee.name|add:"' кофесине буйрутма бергим келет." %}
+                            <a href="https://wa.me/{{ whatsapp_number }}?text={{ message|urlencode }}" target="_blank" class="btn order-button mt-auto">
+                                Буйрутма (WhatsApp)
+                            </a>
+                            {% endwith %}
+                            {% endwith %}
+
+                        </div> {# card-body жабылат #}
+                    </div> {# card жабылат #}
+                </div> {# col-* жабылат #}
+            {% endfor %}
+        </div> {# row жабылат #}
+    {% else %}
+        {# Эгер кофелер жок болсо көрсөтүлө турган билдирүү #}
+        <p style="text-align: center; margin-top: 50px; font-size: 1.1em; color: #888;">
+            Азырынча бул категорияда кофелер жок.
+        </p>
+    {% endif %}
+
+    {# Бул шилтеме ашыкча, анткени навигация base.html'де болушу керек #}
+    {# <p><a href="{% url 'menu' %}">Негизги менюга кайтуу</a></p> #}
+
+</div> {# container жабылат #}
 {% endblock content %}

@@ -119,3 +119,87 @@ footer {
     text-align: center; padding: 25px 0; margin-top: 40px;
     color: #b0bec5; font-size: 0.85em;
 }
+/* style.css файлынын аягына кошуңуз */
+.category-title {
+    font-size: 1.8em; /* Ариптин өлчөмү */
+    color: #444; /* Түсү */
+    font-weight: bold; /* Калың арип */
+    text-align: center; /* Ортого тегиздөө (же калтырсаңыз да болот) */
+    border-bottom: 2px solid #eee; /* Астына сызык */
+    padding-bottom: 10px; /* Сызыктан ылдыйкы боштук */
+    margin-top: 50px; /* Үстүнкү боштук (мурунку категориядан) */
+    margin-bottom: 30px; /* Астыңкы боштук (карталардан мурун) */
+}
+/* static/css/style.css файлынын аягына кошуңуз */
+
+.category-link-card {
+    text-decoration: none; /* Шилтеменин астындагы сызыкты алуу */
+    color: inherit; /* Тексттин түсүн ата-энесинен алуу (өзгөрбөш үчүн) */
+    display: block; /* Шилтемени блок кылуу (картанын бийиктигин ээлейт) */
+    height: 100%; /* Колонканын бийиктигин ээлөө */
+}
+
+.category-card {
+    border: none; /* Картанын чек арасын алуу */
+    border-radius: 10px; /* Жумуру бурчтар */
+    overflow: hidden; /* Сүрөттүн бурчтарын тегиздөө */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.category-card:hover {
+    transform: translateY(-5px); /* Чычканды алып барганда көтөрүлүү */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Көлөкөнү күчөтүү */
+}
+
+.category-card-img {
+    height: 200px; /* Сүрөттүн бийиктиги (кааласаңыз өзгөртүңүз) */
+    object-fit: cover; /* Сүрөттү туура көрсөтүү */
+}
+
+.category-card-body {
+    /* background-color: rgba(0, 0, 0, 0.02); */ /* Жеңил фон (кааласаңыз) */
+    padding: 15px; /* Ички боштук */
+}
+
+.category-card-title {
+    font-weight: bold;
+    font-size: 1.3rem; /* Аталыштын өлчөмү */
+    color: #333;
+}
+/* static/css/style.css файлынын аягына кошуу */
+
+/* Навигациядагы "Кафейня" брендинин шрифтин чоңойтуу */
+.navbar-brand {
+    font-size: 1.5rem; /* Бул маанини каалагандай өзгөртсөңүз болот (мис., 1.4rem, 1.6rem, 24px) */
+    font-weight: bold; /* Калың кылып коелу */
+}
+
+/* Навигациядагы негизги шилтемелердин шрифтин чоңойтуу ("Башкы бет", "Меню") */
+.navbar-nav .nav-link {
+    font-size: 1.1rem; /* Бул маанини да өзгөртсөңүз болот (мис., 1.05rem, 1.2rem, 18px) */
+    margin-left: 5px;  /* Шилтемелердин ортосуна кичине аралык кошуу (кааласаңыз) */
+    margin-right: 5px;
+}
+
+/* Ачылуучу менюнун аталышын ("Категориялар") чоңойтуу */
+.navbar-nav .dropdown-toggle {
+    font-size: 1.1rem; /* Бул nav-link менен бирдей болушу керек */
+}
+
+/* Ачылуучу менюнун ичиндеги шилтемелерди бир аз чоңойтуу (кааласаңыз) */
+.dropdown-menu .dropdown-item {
+    font-size: 1rem; /* Демейкиден бир аз чоңураак */
+}
+
+
+ @media (max-width: 992px) {
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+    .navbar-nav .nav-link {
+        font-size: 1rem;
+    }
+    .navbar-nav .dropdown-toggle {
+        font-size: 1rem;
+    }
+}

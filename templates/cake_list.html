@@ -1,40 +1,71 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Торттор{% endblock %} {# Бул блок туура жабылган #}
+{# Баракчанын аталышын <title> тегине коёт (base.html'де {% block title %} болушу керек) #}
+{% block title %}Биздин Торттор{% endblock title %}
 
-{# ----- БУЛ БЛОК 6-САПТА БАШТАЛАТ: ----- #}
-{% block content %} 
-<div class="container"> 
-    <h1 class="category-title">Биздин Торттор</h1> 
+{% block content %}
+<div class="container mt-4"> {# Контейнер жана үстүнөн бир аз боштук #}
+
+    {# Баракчанын негизги аталышы #}
+    <h1 class="category-title text-center mb-5">Биздин Торттор</h1> {# text-center кошулду, mb-5 астынан боштук #}
 
     {% if cakes %}
-        <ul class="item-list"> 
+        <div class="row">
             {% for cake in cakes %}
-                <li class="item-card"> 
-                    
-                    {% if cake.image %}
-                        <img src="{{ cake.image.url }}" alt="{{ cake.name }}">
-                    {% else %}
-                         <div style="height: 240px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #ccc;">Сүрөт жок</div>
-                    {% endif %}
-                    
-                    <div class="item-card-content"> 
-                        <h2>{{ cake.name }}</h2>
-                        <p class="description">{{ cake.description }}</p> 
+                {# Ар бир торт үчүн колонка (Bootstrap grid) #}
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
 
-                        <div class="item-card-footer"> 
-                            <span class="price">{{ cake.price }} сом</span> 
-                            <a href="#" class="order-button">Заказ Берүү</a> 
-                        </div>
-                    </div>
-                </li>
+                    {# Мурунку беттердегидей карта структурасы #}
+                    <div class="card menu-item-card h-100">
+
+                        {% if cake.image %}
+                            <img src="{{ cake.image.url }}" class="card-img-top" alt="{{ cake.name }}">
+                        {% else %}
+                            {# Сүрөт жок болсо, placeholder #}
+                            <img src="{% static 'images/placeholder.png' %}" class="card-img-top" alt="Сүрөт жок">
+                            {# Же болбосо, сиздин div вариантын колдонсоңуз да болот: #}
+                            {# <div class="card-img-top placeholder-img">Сүрөт жок</div> #}
+                            {# Бул үчүн CSS кошуу керек болот: #}
+                            {# .placeholder-img { height: 200px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #ccc; } #}
+                        {% endif %}
+
+                        {# Картанын негизги бөлүгү #}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ cake.name }}</h5>
+
+                            {% if cake.description %}
+                                <p class="card-text mb-auto"> {# mb-auto баскычты ылдый түртөт #}
+                                    {{ cake.description }}
+                                </p>
+                            {% else %}
+                                <p class="card-text mb-auto"> </p> {# Сүрөттөмө жок болсо боштук #}
+                            {% endif %}
+
+                            <p class="price mt-3"> {# mt-3 үстүнөн боштук #}
+                                Баасы: {{ cake.price|floatformat:2 }} сом
+                            </p>
+
+                            {# Буйрутма баскычы (WhatsApp шилтемеси менен) #}
+                            {% with whatsapp_number="996990686854" %} 
+                            {% with message="Саламатсызбы! Мен '"|add:cake.name|add:"' тортуна буйрутма бергим келет." %}
+                            <a href="https://wa.me/{{ whatsapp_number }}?text={{ message|urlencode }}" target="_blank" class="btn order-button mt-auto">
+                                Заказ Берүү (WhatsApp) {# Баскычтын текстин өзгөрттүк #}
+                            </a>
+                            {% endwith %}
+                            {% endwith %}
+
+                        </div> {# card-body жабылат #}
+                    </div> {# card жабылат #}
+                </div> {# col-* жабылат #}
             {% endfor %}
-        </ul>
+        </div> {# row жабылат #}
     {% else %}
-        <p style="text-align: center; margin-top: 40px; color: #888;">Азырынча бул категорияда товар жок.</p> 
+        {# Эгер торттор жок болсо көрсөтүлө турган билдирүү #}
+        <p style="text-align: center; margin-top: 50px; font-size: 1.1em; color: #888;">
+            Азырынча бул категорияда торттор жок.
+        </p>
     {% endif %}
-</div> 
-{# ----- БУЛ БЛОК УШУЛ ЖЕРДЕ ТУУРА ЖАБЫЛЫШЫ КЕРЕК: ----- #}
-{% endblock content %} 
-{# --------------------------------------------------- #}
+
+</div> {# container жабылат #}
+{% endblock content %}

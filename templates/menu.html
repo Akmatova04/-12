@@ -1,46 +1,62 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Меню Категориялары{% endblock %}
+{% block title %}Меню{% endblock title %}
 
 {% block content %}
-<div class="container"> 
-    <h1 class="category-title">Меню Категориялары</h1> 
-    
-    {# Категория шилтемелери үчүн ЖӨНӨКӨЙ тизме #}
-    <ul class="simple-category-list"> 
-        <li><a href="{% url 'cake_list' %}">Торттор</a></li> 
-        <li><a href="{% url 'coffee_list' %}">Кофелер</a></li>
-        <li><a href="{% url 'drink_list' %}">Суусундуктар</a></li>
-    </ul>
+<div class="container mt-5"> {# Контейнер жана үстүнөн боштук #}
 
-    
-</div>
+    <h1 class="category-title text-center mb-5">Меню</h1> {# Баракчанын аталышы #}
 
-{# Бул баракка гана тиешелүү кошумча CSS (жөнөкөй стиль үчүн) #}
-<style>
-    .simple-category-list {
-        list-style: none; /* Маркерлерди алуу */
-        padding: 0;
-        text-align: center; /* Ортого жылдыруу */
-        margin: 40px 0; /* Үстүнөн/астынан боштук */
-    }
-    .simple-category-list li {
-        margin-bottom: 15px; /* Тизме элементтеринин арасы */
-    }
-    .simple-category-list li a {
-        font-size: 1.2em; /* Шрифт өлчөмү */
-        font-weight: bold; /* Калың */
-        color: var(--dark-text); /* Текст түсү (CSS'тен) */
-        text-decoration: none;
-        padding: 5px 10px;
-        border-bottom: 2px solid transparent; /* Астындагы сызык (азырынча тунук) */
-        transition: color 0.3s ease, border-color 0.3s ease;
-    }
-    .simple-category-list li a:hover {
-        color: var(--primary-color); /* Үстүнө келгенде түс өзгөрөт (CSS'тен) */
-        border-bottom-color: var(--primary-color); /* Астына сызык пайда болот */
-    }
-</style>
+    <div class="row justify-content-center"> {# Карталарды ортого жайгаштыруу үчүн justify-content-center #}
 
+        {# Торттор категориясы үчүн карта-шилтеме #}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <a href="{% url 'cake_list' %}" class="category-link-card">
+                <div class="card category-card h-100 shadow-sm">
+                    {# --- ӨЗГӨРТҮЛДҮ: --- #}
+                    <img src="{% static 'images/cake.jpg' %}" class="card-img-top category-card-img" alt="Торттор">
+                    {# -------------------- #}
+                    <div class="card-body text-center d-flex align-items-center justify-content-center">
+                        <h5 class="card-title category-card-title mb-0">Торттор</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {# Кофелер категориясы үчүн карта-шилтеме #}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <a href="{% url 'coffee_list' %}" class="category-link-card">
+                <div class="card category-card h-100 shadow-sm">
+                     {# --- ӨЗГӨРТҮЛДҮ (Болжолдуу ат, текшерип коюңуз!): --- #}
+                    <img src="{% static 'images/coffee.jpg' %}" class="card-img-top category-card-img" alt="Кофелер">
+                    {# Эгер сүрөтүңүздүн аты башка болсо, 'images/coffee.jpg' дегенди ошого өзгөртүңүз #}
+                    {# --------------------------------------------------- #}
+                    <div class="card-body text-center d-flex align-items-center justify-content-center">
+                        <h5 class="card-title category-card-title mb-0">Кофелер</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {# Суусундуктар категориясы үчүн карта-шилтеме #}
+        <div class="col-lg-4 col-md-6 mb-4">
+             <a href="{% url 'drink_list' %}" class="category-link-card">
+                <div class="card category-card h-100 shadow-sm">
+                     {# --- ӨЗГӨРТҮЛДҮ (Болжолдуу ат, текшерип коюңуз!): --- #}
+                    <img src="{% static 'images/drinks.jpg' %}" class="card-img-top category-card-img" alt="Суусундуктар">
+                    {# Эгер сүрөтүңүздүн аты башка болсо, 'images/drinks.jpg' дегенди ошого өзгөртүңүз #}
+                    {# --------------------------------------------------- #}
+                    <div class="card-body text-center d-flex align-items-center justify-content-center">
+                        <h5 class="card-title category-card-title mb-0">Суусундуктар</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {# Жаңы категория кошсоңуз, ушул жерге окшош блок кошосуз #}
+
+    </div> {# row жабылат #}
+
+</div> {# container жабылат #}
 {% endblock content %}

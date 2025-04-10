@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Байланыш{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <h1 class="category-title text-center mb-5">Биз менен байланышыңыз</h1>
+
+    <div class="row">
+        {# Сол тарап: Байланыш маалыматы #}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title mb-4"><i class="fas fa-info-circle me-2"></i>Байланыш маалыматы</h4>
+                    <p>
+                        <i class="fas fa-map-marker-alt me-2 text-secondary"></i>
+                        <strong>Дарегибиз:</strong><br>
+                        Кара-Бак айылы Досбол көчөсү 
+                    </p>
+                    <hr>
+                    <p>
+                        <i class="fas fa-phone-alt me-2 text-secondary"></i>
+                        <strong>Телефон:</strong><br>
+                        <a href="tel:+996555123456">+996 990686854</a> 
+                    </p>
+                    <hr>
+                     <p>
+                        <i class="fab fa-whatsapp me-2 text-secondary"></i>
+                        <strong>WhatsApp:</strong><br>
+                        <a href="https://wa.me/996555123456" target="_blank">+996 990 68 68 54</a> 
+                    </p>
+                    <hr>
+                    <p>
+                        <i class="fas fa-clock me-2 text-secondary"></i>
+                        <strong>Иш убактысы:</strong><br>
+                        Дүйшөмбү - Жума: 09:00 - 20:00<br>
+                        Ишемби - Жекшемби: 10:00 - 18:00 
+                    </p>
+                     {# Социалдык тармактар (керек болсо) #}
+                    {# <hr> #}
+                    {# <p> #}
+                    {#    <strong class="mb-2 d-block">n.akmatova3:</strong> #}
+                    {#    <a href="#" target="_blank" class="btn btn-outline-primary btn-sm me-2"><i class="fab fa-instagram"></i> Instagram</a> #}
+                    {#    <a href="#" target="_blank" class="btn btn-outline-primary btn-sm"><i class="fab fa-facebook"></i> Facebook</a> #}
+                    {# </p> #}
+                </div>
+            </div>
+        </div>
+
+        {# Оң тарап: Карта (мисалы, Google Maps) #}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                 <div class="card-body">
+                    <h4 class="card-title mb-4"><i class="fas fa-map-marked-alt me-2"></i>Биз картада</h4>
+                     {# Бул жерге Google Maps'тан алган embed кодун коюңуз #}
+                     {# Google Maps'ка кирип, кафейняңыздын дарегин таап, "Share" -> "Embed a map" -> "COPY HTML" басыңыз #}
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2923.900799781796!2d74.61491761540664!3d42.8746708791559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389ec83a532a8f7b%3A0x1c0b9b8b7a4ea8b3!2sAla-Too%20Square!5e0!3m2!1sen!2skg!4v1678886400000!5m2!1sen!2skg"
+                            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            {# ЖОГОРУДАГЫ src="..." АТРИБУТУН ӨЗҮҢҮЗДҮН КАРТА КОДУҢУЗ МЕНЕН АЛМАШТЫРЫҢЫЗ! #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block extra_head %} {# Карта үчүн стильдерди кошолу #}
+<style>
+    /* Font Awesome иконкалары үчүн (эгер base.html'де жок болсо) */
+    /* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'); */
+
+    .map-container {
+        position: relative;
+        overflow: hidden;
+        padding-top: 75%; /* Бийиктигин тууралаш үчүн (4:3 катышы) */
+        /* padding-top: 56.25%; --- 16:9 катышы үчүн */
+    }
+    .map-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    .card-body p {
+        margin-bottom: 1rem; /* Параграфтардын ортосундагы боштук */
+        line-height: 1.6;
+    }
+    .card-body hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .card-body i.me-2 { /* Иконка менен тексттин ортосундагы боштук */
+        width: 20px; /* Иконкалардын туурасын бирдей кылуу */
+        text-align: center;
+    }
+</style>
+{% endblock extra_head %}

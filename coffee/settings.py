@@ -126,3 +126,20 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os # Бул файлдын башында болушу керек
+
+# ... башка орнотуулар ...
+
+STATIC_URL = '/static/'
+
+# Бул Django'го runserver учурунда кайсы папкаларды кароону айтат:
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# MEDIA_URL жана MEDIA_ROOT да туура болушу керек (бирок булар азыркы көйгөйгө тиешеси жок)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
